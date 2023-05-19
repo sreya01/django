@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #020222;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        .submit-btn {
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+
+body, html {
+    height: 100%;
+}
+
+/* The hero image */
+
+.hero-image {
+  background-image: url("https://wallpaperaccess.com/full/1330563.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+}
+
+/* Place text in the middle of the image */
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(11, 20, 49);
+}
+
+.container2 p {
+            text-align: center;
+            color: #fff;
+        }
+
+.container2 p.verdict {
+    margin-bottom: 30px;
+}
+
+    </style>
+</head>
+<body>
+
+<div class="hero-image">
+  <div class="hero-text">
+
+
+  </div>
+</div>
+
+
+    <h1>Parkinsons Disease Prediction</h1>
+    <div class="container2">
+        <p>An AI platform created with the objective of aiding healthcare professionals in the diagnosis of Parkinson's Disease.
+           The assesements are conducted based off quanitfiable measures of the patient's voice and speech signals.</p>
+  
+    
+    {% if verdict %}
+    <div>
+        <center>
+            <h1>{{verdict}}</h1>
+        </center>
+    </div>
+    {% endif %}
+</div>
+
+    <div class="container">
+
+
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender">
+                    <option value="1">Male</option>
+                    <option value="0">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="PPE">PPE:</label>
+                <input type="number" id="PPE" name="PPE" step="0.001" required>
+            </div>
+            <div class="form-group">
+                <label for="DFA">DFA:</label>
+                <input type="number" id="DFA" name="DFA" step="0.001" required>
+            </div>
+            <div class="form-group">
+                <label for="RPDE">RPDE:</label>
+                <input type="number" id="RPDE" name="RPDE" step="0.001" required>
+            </div>
+            <div class="form-group">
+                <label for="numPulses">Pulse Count:</label>
+                <input type="number" id="numPulses" name="numPulses" required>
+            </div>
+            <div class="form-group">
+                <label for="numPeriodsPulses">Pulse Period Count:</label>
+                <input type="number" id="numPeriodsPulses" name="numPeriodsPulses" required>
+            </div>
+            <div class="form-group">
+                <label for="meanPeriodPulses">Average Pulse Period:</label>
+                <input type="number" id="meanPeriodPulses" name="meanPeriodPulses" step="0.001" required>
+            </div>
+            <div class="form-group">
+                <label for="stdDevPeriodPulses">Variability of Pulse Periods:</label>
+                <input type="number" id="stdDevPeriodPulses" name="stdDevPeriodPulses" step="0.00001" required>
+            </div>
+            <div class="form-group">
+                <label for="tqwt_kurtosisValue_dec_35">Tuned Q-Transform Kurtosis Value 35:</label>
+                <input type="number" id="tqwt_kurtosisValue_dec_35" name="tqwt_kurtosisValue_dec_35" step="0.0001" required>
+            </div>
+            <div class="form-group">
+                <label for="tqwt_kurtosisValue_dec_36">Tuned Q-Transform Kurtosis Value 36:</label>
+                <input type="number" id="tqwt_kurtosisValue_dec_36" name="tqwt_kurtosisValue_dec_36" step="0.0001" required>
+            </div>
+            <div style="text-align: center;">
+                <button class="submit-btn" type="submit">Predict</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
